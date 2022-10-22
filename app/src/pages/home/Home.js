@@ -5,6 +5,7 @@ import { Container } from './Home.styled'
 
 const Home = () => {
   const [data, setData] = useState(null)
+
   useEffect(() => {
     heroAPI.getAllHeroes().then(res => setData(res.slice(0,10)))
   
