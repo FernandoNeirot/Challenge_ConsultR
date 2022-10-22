@@ -10,8 +10,7 @@ const Modal = ({
   name
 }) => {
   const [openModal, setOpenModal] = useState(false)
-  console.log(data)
-  console.log(Object.entries(data))
+
   useEffect(() => {
     setOpenModal(true)
     return () => {
