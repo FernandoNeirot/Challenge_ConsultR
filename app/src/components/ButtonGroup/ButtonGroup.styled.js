@@ -17,11 +17,14 @@ export const Item = styled.button`
   justify-content: center;
   align-items: center;
   text-align: center;
+  cursor: ${({disabled}) => disabled ? 'no-drop': 'pointer'};
   font-size: 20px;
   color: white;
-  background-color: rgba(0,0,0,.8);
+  background-color: ${({disabled}) => disabled ? 'rgba(182,182,182,.8)': 'rgba(0,0,0,.8)'};
   padding: 5px;
-  cursor: pointer;
+  :hover {
+    box-shadow: ${({disabled}) => !disabled && '4px 2px 5px 0px rgba(255,255,255,0.59)'};
+  }
 `
 
 export const Icon = styled.div`
