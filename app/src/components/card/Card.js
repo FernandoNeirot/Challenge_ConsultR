@@ -48,7 +48,7 @@ const Card = ({hero}) => {
       <Footer>
         <Item>Peso: {hero['appearance']['weight'][1]}</Item>
         <Item>Altura: {hero['appearance']['height'][1]}</Item>
-        <Item>Genero: <Icon color={GENDER.COLOR}>{GENDER.ICON}</Icon></Item>
+        <Item>Genero: <Icon color={GENDER?.COLOR ?? 'black'}>{GENDER?.ICON}</Icon></Item>
         <Item>Color ojos: <Icon color={hero['appearance']['eyeColor'].toLowerCase()}><IoIosEye/></Icon></Item>
       </Footer>
       {open && data &&

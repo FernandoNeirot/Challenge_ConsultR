@@ -1,26 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Card from '../../components/card/Card'
-import { heroAPI } from '../../services/heroAPI'
 import { Container } from './Home.styled'
+import { useSelector, useDispatch } from 'react-redux'
+import { getAllHeroes, setByScroll } from '../../store/slices/heroes'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 const Home = () => {
-  const [data, setData] = useState(null)
+  const {resultByScroll} = useSelector(state => state.heroes)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    heroAPI.getAllHeroes().then(res => setData(res.slice(0,10)))
-  
-    return () => {
-      setData(null)
-    }
+    dispatch(getAllHeroes())
   }, [])
   
-  return (
-    <Container>
+  return (    
+    <InfiniteScroll dataLength={resultByScroll.length} hasMore={true} next={() => dispatch(setByScroll())}>
+      <Container>
       {
-        data && 
-            data.map(element => <Card key={element.id} hero={element} />)     
+        resultByScroll && 
+          resultByScroll.map(element => <Card key={element.id} hero={element} />)     
       }
-    </Container>
+      </Container>
+    </InfiniteScroll>
   )
 }
 
